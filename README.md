@@ -1,7 +1,6 @@
 # Ecommerce-App
 
-to create a ecommerce-app using MERN Stack
-project should have these features
+to create a ecommerce-app using MERN Stack. This project should have these features
 
 1. Authentication
 2. Buyer, Seller account type
