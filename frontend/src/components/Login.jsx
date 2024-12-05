@@ -1,5 +1,11 @@
+import Register from "./Register";
+
 const Login = () => {
-  return <div>Login</div>;
+  return (
+    <main>
+      <Register />
+    </main>
+  );
 };
 
 export default Login;

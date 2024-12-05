@@ -12,19 +12,21 @@ import { Navbar } from "./components/Navbar.jsx";
 const App = () => {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="men" element={<Men />} />
-        <Route path="women" element={<Women />} />
-        <Route path="kids" element={<Kids />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+      <main className="relative">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="men" element={<Men />} />
+          <Route path="women" element={<Women />} />
+          <Route path="kids" element={<Kids />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
 
-        {/*protected routes */}
-        <Route path="buyer" element={<Buyer />} />
-        <Route path="seller" element={<Seller />} />
-      </Routes>
+          {/*protected routes */}
+          <Route path="buyer" element={<Buyer />} />
+          <Route path="seller" element={<Seller />} />
+        </Routes>
+      </main>
     </>
   );
 };
