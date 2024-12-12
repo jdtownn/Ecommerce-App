@@ -13,7 +13,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(true);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   return (
-    <header className="fixed top-0 max_padd_container mx-auto w-full bg-white py-10 z-10 ">
+    <header className="fixed top-0 max_padd_container mx-auto w-full bg-white z-10 ">
       <div className=" py-4 flex justify-between items-center">
         {/*logo*/}
         <div>
