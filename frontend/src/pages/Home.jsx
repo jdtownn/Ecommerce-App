@@ -1,17 +1,15 @@
 import Hero from "../components/Hero";
 import NewCollections from "../components/NewCollections";
-import NewsLetter from "../components/NewsLetter";
 import Offer from "../components/Offer";
-import Popular from "../components/Popular";
+import Featured from "../components/Featured";
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <Popular />
+      <Featured />
       <Offer />
       <NewCollections />
-      <NewsLetter />
     </>
   );
 };
