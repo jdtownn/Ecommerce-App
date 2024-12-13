@@ -6,7 +6,7 @@ const Item = ({ id, name, image, new_price, old_price }) => {
   return (
     <div className="rounded-xl overflow-hidden shadow-lg">
       <div className="relative flexCenter group overflow-hidden transition-all duration-100">
-        <Link to={`product/${id}`} className="">
+        <Link to={`/product/${id}`} className="">
           <img
             src={image}
             alt="productImage"
