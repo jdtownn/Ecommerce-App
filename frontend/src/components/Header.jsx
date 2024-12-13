@@ -10,8 +10,9 @@ import user from "../assets/user.svg";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <header className="fixed top-0 max_padd_container mx-auto w-full bg-white z-10 ">
       <div className=" py-4 flex justify-between items-center">
@@ -28,14 +29,14 @@ const Header = () => {
           </Link>
         </div>
         <Navbar
-          containerStyle={`hidden gap-x-5 md:flex xl: gap-x-10 medium-5`}
+          containerStyle={`hidden gap-x-5 md:flex xl:gap-x-10 medium-5`}
         />
         <Navbar
           containerStyle={`${
             menuOpen
               ? "flex item-start flex-col gap-y-12 fixed top-28 right-8 p-12 bg-white rounded-3xl shadow-md w-64 medium-16 ring-1 ring-slate-900/5 transition-all duration-300"
               : "flex item-start flex-col gap-y-12 fixed top-28 p-12 bg-white rounded-3xl shadow-md w-64 medium-16 ring-1 ring-slate-900/5 transition-all duration-300 -right-[100%] "
-          }`}
+          } md:hidden`}
         />
         <div className="flexBetween sm:gap-x-6 bold">
           {!menuOpen ? (
