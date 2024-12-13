@@ -58,26 +58,30 @@ const CartItems = () => {
           <h4 className="bold-20">Order Summary</h4>
           <div>
             <div className="flexBetween py-4">
-              <h4>Subtotal:</h4>
-              <p>${0}</p>
+              <h4 className="medium-16 ">Subtotal:</h4>
+              <p className="text-gray-30 font-semibold">${0}</p>
             </div>
             <hr />
-            <div>
-              <h4>Shipping Fee</h4>
-              <p>Free</p>
+            <div className="flexBetween py-4">
+              <h4 className="medium-16 ">Shipping Fee</h4>
+              <p className="text-gray-30 font-semibold">Free</p>
             </div>
             <hr />
-            <div>
-              <h4>Total</h4>
-              <p>${0}</p>
+            <div className="flexBetween py-4">
+              <h4 className="medium-16 bold-22">Total</h4>
+              <p className="bold-22">${0}</p>
             </div>
           </div>
-          <button>Checkout</button>
-          <div>
-            <h4>Enter coupon code here</h4>
-            <div>
-              <input type="text" placeholder="Coupon Code" />
-              <button>Submit</button>
+          <button className="btn_dark_rounded w-44">Checkout</button>
+          <div className="flex flex-col gap-10">
+            <h4 className="bold-20 capitalize">Enter coupon code here</h4>
+            <div className="flexBetween pl-5 h-12 bg-primary rounded-full ring-1 ring-slate-900/10">
+              <input
+                type="text"
+                placeholder="Coupon Code"
+                className="bg-transparent border-none outline-none"
+              />
+              <button className="btn_dark_rounded">Submit</button>
             </div>
           </div>
         </div>
