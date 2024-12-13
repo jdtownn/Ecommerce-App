@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdClose, MdMenu } from "react-icons/md";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 // import logout from "../assets/logout.svg";
 import user from "../assets/user.svg";
 
 import { NavLink } from "react-router-dom";
+import { ShopContext } from "../Context/ShopContext";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const { getTotalCartItems } = useContext(ShopContext);
 
   return (
     <header className="fixed top-0 max_padd_container mx-auto w-full bg-white z-10 ">
@@ -54,7 +56,7 @@ const Header = () => {
             <NavLink to={"cart-page"} className="flex">
               <PiShoppingCartSimpleBold className="h-8 w-8 p-1 ring-1 ring-slate-900/30 rounded-md" />
               <span className="relative flexCenter h-5 w-5 rounded-full bg-secondary text-white medium-14 -top-2">
-                0
+                {getTotalCartItems()}
               </span>
             </NavLink>
             {/* <NavLink
