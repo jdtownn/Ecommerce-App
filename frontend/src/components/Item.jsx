@@ -11,6 +11,7 @@ const Item = ({ id, name, image, new_price, old_price }) => {
             src={image}
             alt="productImage"
             className="object-cover w-full block group-hover:scale-125 transition-all duration-1000"
+            onClick={window.scrollTo(0, 0)}
           />
         </Link>
       </div>
