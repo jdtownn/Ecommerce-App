@@ -13,21 +13,30 @@ export const getProduct = async (req, res) => {
     }
 }
 export const createProduct = async (req, res) => {
-    const product = req.body;
-
-    if (!product.name || !product.image || !product.category || !product.new_price || !product.old_price) {
-        return res.status(400).json({ success: false, message: "Please provide all fields" });
+    let products = await Product.find({})
+    let id;
+    if (products.length > 0) {
+        let last_product_arr = products.slice(-1)
+        let last_product = last_product_arr[0]
+        id = last_product.id + 1
+    } else {
+        id = 1;
     }
 
-    const newProduct = new Product(product);
+    const product = new Product({
+        id: id,
+        name: req.body.name,
+        image: req.body.image,
+        category: req.body.category,
+        new_price: req.body.new_price,
+        old_price: req.body.old_price,
 
-    try {
-        await newProduct.save();
-        res.status(201).json({ success: true, data: newProduct });
-    } catch (err) {
-        console.error("Error in creating new Product: ", err.message)
-        res.status(500).json({ success: false, msg: "Server error" });
-    }
+    })
+    await product.save()
+    res.json({
+        success: true,
+        name: req.body.name,
+    })
 }
 
 export const updateProduct = async (req, res) => {
