@@ -45,6 +45,21 @@ const AddProduct = () => {
 
     if (responseData.success) {
       product.image = responseData.image_url;
+      console.log(product);
+      await fetch("http://localhost:5000/api/products/addproduct", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      })
+        .then((res) => res.json())
+        .then((data) =>
+          data.success
+            ? alert("Product added successfully")
+            : alert("Failed to upload")
+        );
     }
   };
 
