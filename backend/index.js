@@ -5,6 +5,10 @@ import { connectDB } from "./config/db.js";
 import multer from 'multer';
 import path from "path"
 import cors from "cors"
+import mongoose from 'mongoose';
+import { type } from 'os';
+import { error } from 'console';
+import jwt from "jsonwebtoken"
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -32,6 +36,61 @@ app.post("/upload", upload.single('product'), (req, res) => {
         image_url: `http://localhost:${PORT}/images/${req.file.filename}`
     })
 })
+
+
+const User = mongoose.model({
+    name: {
+        type: String,
+    },
+    email: {
+        type: String,
+        unique: true,
+    },
+    password: {
+        type: String,
+    },
+    cartData: {
+        type: Object,
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    }
+})
+
+app.post('/signup', async (req, res) => {
+    let check = await User.findOne({ email: req.body.email })
+    if (check) {
+        return res.status(400).json({
+            success: false, errors: "Existing user found with same email address."
+        })
+    }
+
+    let cart = {}
+    for (let i = 0; i < 300; i++) {
+        cart[i] = 0
+    }
+
+    const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        cartData: cart,
+    })
+
+    await user.save()
+
+    const data = {
+        user: {
+            id: user.id
+        }
+    }
+
+    const token = jwt.sign(data, 'secret_ecom')
+    res.json({ success: true, token })
+
+})
+
 
 app.use(express.json());
 app.use("/api/products", router);
