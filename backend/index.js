@@ -38,13 +38,13 @@ app.post("/upload", upload.single('product'), (req, res) => {
 })
 
 
-const User = mongoose.model({
+const User = mongoose.model('User', {
     name: {
         type: String,
     },
     email: {
         type: String,
-        unique: true,
+        unique: true
     },
     password: {
         type: String,
@@ -91,6 +91,38 @@ app.post('/signup', async (req, res) => {
 
 })
 
+
+app.post('/login', async (req, res) => {
+    let user = await User.findOne({ email: req.body.email })
+    if (user) {
+        const passMatch = req.body.password === user.password
+        if (passMatch) {
+            const data = {
+                user: {
+                    id: user.id
+                }
+            }
+            const token = jwt.sign(data, 'secret-ecom')
+            res.json({
+                success: true,
+                token
+            })
+
+        }
+        else {
+            res.json({
+                success: false,
+                error: "Wrong Password"
+            })
+        }
+    }
+    else {
+        res.json({
+            success: false,
+            error: "Incorrect Email Address"
+        })
+    }
+})
 
 app.use(express.json());
 app.use("/api/products", router);
